@@ -39,3 +39,36 @@ const newElement = new DomElement(
 const createdElement = newElement.createElement();
 
 document.body.append(createdElement);
+
+const newNewElement = new DomElement(
+  ".square",
+  "100px",
+  "100px",
+  "yellow",
+  "14px",
+);
+
+const newCreatedElement = newNewElement.createElement();
+newCreatedElement.style.position = "absolute";
+newCreatedElement.style.top = "0px";
+newCreatedElement.style.left = "0px";
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.append(newCreatedElement);
+  document.addEventListener("keydown", (e) => {
+    let top = parseInt(newCreatedElement.style.top) || 0;
+    let left = parseInt(newCreatedElement.style.left) || 0;
+    if (e.key === "ArrowDown") {
+      top += 10;
+    } else if (e.key === "ArrowUp") {
+      top -= 10;
+    } else if (e.key === "ArrowLeft") {
+      left -= 10;
+    } else if (e.key === "ArrowRight") {
+      left += 10;
+    }
+
+    newCreatedElement.style.top = top + "px";
+    newCreatedElement.style.left = left + "px";
+  });
+});
